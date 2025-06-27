@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ffb8c6;
+            --accent: #ff4757;
+            --light: #fff5f7;
+            --dark: #2f3542;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .heart {
+            position: fixed;
+            top: -20%;
+            transform: translateY(0);
+            animation: fall 10s linear infinite;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(120vh);
+            }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+        }
+        
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .couple-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        /* Love Letter */
+        .love-letter {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .love-letter p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: right;
+            margin-top: 2rem;
+        }
+        
+        /* Memories */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .memory {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .memory::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .memory-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .memory h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .memory .date {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Love Calculator */
+        .calculator {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .calculator input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .calculator input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .result {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .percentage {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .message {
+            font-style: italic;
+            color: var(--dark);
+        }
+        
+        /* Music Player */
+        .player {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .playlist {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .playlist li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .playlist li:hover {
+            background-color: #e9ecef;
+        }
+        
+        .playlist li.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .controls {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .controls button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .controls button:hover {
+            background-color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-icons {
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+        
+        /* Page Transitions */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .memory {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .memory::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div id="hearts-container"></div>
+    
+    <header>
+        <h1>Happy Birthday, Nandini!</h1>
+        <p>A magical place to celebrate your birthday, the love of my life.</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-page="gallery">Our Gallery</a></li>
+            <li><a href="#" class="nav-link" data-page="letter">Love Letter</a></li>
+            <li><a href="#" class="nav-link" data-page="memories">Our Memories</a></li>
+            <li><a href="#" class="nav-link" data-page="calculator">Love Calculator</a></li>
+            <li><a href="#" class="nav-link" data-page="music">Romantic Music</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <img src="WhatsApp Image 2025-06-27 at 9.08.54 AM.jpeg" alt="Couple" class="couple-img">
+                <h2>To the Most Beautiful lady</h2>
+                <p>On this special day, I want to remind you how much you mean to me. You're not just my girlfriend, you're my best friend, my partner, and my greatest love. This website is a small token of my endless love for you.</p>
+                <p>Happy Birthday, my darling! May this year bring you all the happiness you deserve.</p>
+                <a href="#" class="btn nav-link" data-page="letter">Read My Love Letter</a>
+            </section>
+            
+            <section>
+                <h2>Why You're Amazing Momo</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div style="background-color: #fff9fb; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-heart" style="margin-right: 0.5rem;"></i> Your Kind Heart</h3>
+                        <p>You have the most generous and caring heart I've ever known. You always put others before yourself.</p>
+                    </div>
+                    <div style="background-color: #fff9fb; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-laugh-beam" style="margin-right: 0.5rem;"></i> Your Beautiful Smile</h3>
+                        <p>Your smile brightens my darkest days. It's contagious and fills my heart with joy.</p>
+                    </div>
+                    <div style="background-color: #fff9fb; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-magic" style="margin-right: 0.5rem;"></i> Your Unique Spirit</h3>
+                        <p>There's no one else in the world like you. You're perfectly, wonderfully you.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Gallery Page -->
+        <div id="gallery" class="page">
+            <section>
+                <h2>My Beautiful lady</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="6r.jpeg" alt="Couple at beach">
+                        <div class="overlay">Beauty, grace, and pure magic</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="5r.jpeg" alt="Celebration">
+                        <div class="overlay">Prettiest girl in the universe</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="4r.jpeg" alt="Winter walk">
+                        <div class="overlay">You define beauty with elegance</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="3r.jpeg" alt="Dinner date">
+                        <div class="overlay">You're magic in every moment</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="1r.jpeg" alt="Adventure">
+                        <div class="overlay">Sunsets envy your glowing smile</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="2r.jpeg" alt="Cuddles">
+                        <div class="overlay">Eyes that steal my breath</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Love Letter Page -->
+        <div id="letter" class="page">
+            <section class="love-letter">
+                <h2>My Dearest Momo,</h2>
+                <p>As I sit down to write this letter on your special day, my heart is overflowing with love for you. There are so many things I want to say, but words often fail to capture the depth of my feelings.</p>
+                
+                <p>Even though we’re miles apart today, my heart is wrapped around you tighter than ever. I wish I could be there to hold your hand, see your eyes light up when you smile, and hug you like the world stops when we’re together.</p>
+                
+                <p>Waise toh likhne ko bhaut kuch hai bas yehi bolunga i love you so much and i feel so deeply for you, you are the most important thing in my life and my most precious.</p>
+                
+                <p>On your birthday, I want you to know that you are the most beautiful person I know, inside and out. Your strength inspires me, your compassion humbles me, and your love completes me. I promise to spend every day making you as happy as you've made me.</p>
+                
+                <p>Thank you for being you - perfectly, wonderfully you. May this year bring you all the joy, success, and love you deserve. I can't wait to create more beautiful memories together.</p>
+                
+                <p>Forever yours,</p>
+                <div class="signature">Gaurav kumar</div>
+            </section>
+            
+            <section style="text-align: center;">
+                <h2>My lady</h2>
+                <p style="margin-bottom: 1rem;">This song always reminds me of you:</p>
+                <iframe width="100%" height="315" src="music2.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="max-width: 560px; border-radius: 8px;"></iframe>
+            </section>
+        </div>
+        
+        <!-- Memories Page -->
+        <div id="memories" class="page">
+            <section>
+                <h2>Our Journey Together</h2>
+                <div class="timeline">
+                    <div class="memory left">
+                        <div class="memory-content">
+                            <div class="date">June 2019</div>
+                            <h3>The Day I saw you</h3>
+                            <p>I'll never forget the first time I saw you. You were wearing that blue school dress and your smile lit up the entire room. You were giving your speech and I was just sitting in front of you, completely lost, staring at you.</p>
+                        </div>
+                    </div>
+                    <div class="memory right">
+                        <div class="memory-content">
+                            <div class="date">January 2021</div>
+                            <h3>The day we started our relationship</h3>
+                            <p>Remember that night, we talked for hours — all the way till 3 AM.You still weren’t sure if you wanted to be in a relationship or not.But when you said “yes” at 8 in the morningit became the most beautiful day of my life.</p>
+                        </div>
+                    </div>
+                    <div class="memory left">
+                        <div class="memory-content">
+                            <div class="date">April 2021</div>
+                            <h3>Our First Date</h3>
+                            <p>Honestly, it felt more like an interview than a date But I really enjoyed sitting with you and spending time together.And that night ended in the most special way —when you shook hands with me before leaving…</p>
+                        </div>
+                    </div>
+                    <div class="memory right">
+                        <div class="memory-content">
+                            <div class="date">May 2025</div>
+                            <h3>The night I stayed with you</h3>
+                            <p>You planned the most beautiful date. The dinner and even though we were together the whole night, we didn’t do anything wrong - you showed me what true love looks like.</p>
+                        </div>
+                    </div>
+                    <div class="memory left">
+                        <div class="memory-content">
+                            <div class="date">Today</div>
+                            <h3>Your Special Day</h3>
+                            <p>And now we're here, celebrating your birthday my babe and all the joy you bring to my life. I can't wait to create many more beautiful memories together.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Love Calculator Page -->
+        <div id="calculator" class="page">
+            <section>
+                <h2>Our Love Calculator</h2>
+                <div class="calculator">
+                    <p>Enter your names to see how perfect we are together!</p>
+                    <input type="text" id="name1" placeholder="Your name" value="You">
+                    <input type="text" id="name2" placeholder="Your partner's name" value="Me">
+                    <button class="btn" id="calculate-btn">Calculate Love</button>
+                    
+                    <div class="result" id="result" style="display: none;">
+                        <div class="percentage" id="percentage">0%</div>
+                        <div class="message" id="message"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Music Player Page -->
+        <div id="music" class="page">
+            <section>
+                <h2>Romantic Playlist</h2>
+                <div class="player">
+                    <p>Play these romantic songs that remind me of us</p>
+                    <audio id="audio-player" controls style="width: 100%; margin-top: 1rem;"></audio>
+                    
+                    <ul class="playlist" id="playlist">
+                        <li data-src="music.mp3">Until i found you - Ed Sheeran</li>
+                        <li data-src="musicc2.mp3">Haan ke haan </li>
+                        <li data-src="music3.mp3">Abdul hannan & rovalio</li>
+                        <li data-src="music4.mp3">Chaand Baliyan</li>
+                        <li data-src="music5.mp3">Aankhon Se Batana</li>
+                    </ul>
+                    
+                    <div class="controls">
+                        <button id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                        <button id="play-btn"><i class="fas fa-play"></i></button>
+                        <button id="next-btn"><i class="fas fa-step-forward"></i></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Made with <i class="fas fa-heart" style="color: var(--primary);"></i> for the most amazing girlfriend in the world</p>
+        <p>Happy Birthday, my momo!</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const colors = ['#ff6b8b', '#ffb8c6', '#ff4757', '#ff8fab'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(heart);
+            }
+        }
+        
+        // Navigation between pages
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Love Calculator
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const name1 = document.getElementById('name1').value.trim() || 'You';
+            const name2 = document.getElementById('name2').value.trim() || 'Me';
+            const percentage = Math.floor(Math.random() * 31) + 70; // Always between 70-100%
+            
+            document.getElementById('percentage').textContent = percentage + '%';
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = `"${name1} and ${name2} are a match made in heaven! Your love is eternal and unbreakable."`;
+            } else if (percentage >= 80) {
+                message = `"${name1} and ${name2} are deeply in love! You have an amazing connection that will last forever."`;
+            } else {
+                message = `"${name1} and ${name2} have a beautiful love! Keep nurturing your relationship and it will grow even stronger."`;
+            }
+            
+            document.getElementById('message').textContent = message;
+            document.getElementById('result').style.display = 'block';
+        });
+        
+        // Music Player
+        const player = document.getElementById('audio-player');
+        const playlistItems = document.querySelectorAll('#playlist li');
+        const playBtn = document.getElementById('play-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let currentTrack = 0;
+        
+        function loadTrack(index) {
+            const track = playlistItems[index];
+            player.src = track.getAttribute('data-src');
+            
+            // Update active track in playlist
+            playlistItems.forEach(item => item.classList.remove('active'));
+            track.classList.add('active');
+            
+            // Play the track
+            player.play();
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+        
+        // Play button click
+        playBtn.addEventListener('click', function() {
+            if (player.paused) {
+                if (player.src === '') {
+                    loadTrack(0);
+                } else {
+                    player.play();
+                }
+                this.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                player.pause();
+                this.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        // Next button
+        nextBtn.addEventListener('click', function() {
+            currentTrack = (currentTrack + 1) % playlistItems.length;
+            loadTrack(currentTrack);
+        });
+        
+        // Previous button
+        prevBtn.addEventListener('click', function() {
+            currentTrack = (currentTrack - 1 + playlistItems.length) % playlistItems.length;
+            loadTrack(currentTrack);
+        });
+        
+        // Playlist item click
+        playlistItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentTrack = index;
+                loadTrack(currentTrack);
+            });
+        });
+        
+        // When track ends, play next
+        player.addEventListener('ended', function() {
+            nextBtn.click();
+        });
+        
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            
+            // You can pre-load the first track if you want
+            // loadTrack(0);
+        });
+    </script>
+</body>
+</html>
